@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ShowHour</string>
+    <string name="title_string">ShowHour | Get Details of your Favourite TV Shows</string>
+    <string name="search">Search</string>
 </resources>

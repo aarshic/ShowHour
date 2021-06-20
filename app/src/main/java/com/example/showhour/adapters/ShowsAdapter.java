@@ -1,6 +1,5 @@
 package com.example.showhour.adapters;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -16,13 +15,13 @@ import com.example.showhour.viewModel.ShowsViewModel;
 
 import java.util.List;
 
-public class ShowsAdapter  extends  RecyclerView.Adapter<ShowsAdapter.ShowsViewHolder> {
+public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.ShowsViewHolder> {
 
 	private ShowsViewModel showsViewModels;
 	private LayoutInflater layoutInflater;
 	private List<ShowsModel> showsModelsList;
 
-	public ShowsAdapter (ShowsViewModel showsViewModel) {
+	public ShowsAdapter(ShowsViewModel showsViewModel) {
 		this.showsViewModels = showsViewModel;
 	}
 
@@ -33,7 +32,7 @@ public class ShowsAdapter  extends  RecyclerView.Adapter<ShowsAdapter.ShowsViewH
 	@NonNull
 	@Override
 	public ShowsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		if(layoutInflater == null) {
+		if (layoutInflater == null) {
 			layoutInflater = LayoutInflater.from(parent.getContext());
 		}
 		ShowsItemBinding showsItemBinding = DataBindingUtil.inflate(layoutInflater, R.layout.shows_item, parent, false);
@@ -47,7 +46,7 @@ public class ShowsAdapter  extends  RecyclerView.Adapter<ShowsAdapter.ShowsViewH
 
 	@Override
 	public int getItemCount() {
-		if(showsModelsList != null) {
+		if (showsModelsList != null) {
 			return showsModelsList.size();
 		}
 		return 0;

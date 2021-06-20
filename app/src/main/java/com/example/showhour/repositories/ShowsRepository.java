@@ -1,9 +1,6 @@
 package com.example.showhour.repositories;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.showhour.model.ShowsModel;
@@ -36,7 +33,7 @@ public class ShowsRepository {
 		apiService.getShows(page).enqueue(new Callback<ShowsResponse>() {
 			@Override
 			public void onResponse(@NonNull Call<ShowsResponse> call, @NonNull Response<ShowsResponse> response) {
-				for (ShowsModel showsModel : response.body().getTvShows()){
+				for (ShowsModel showsModel : response.body().getTvShows()) {
 					showsModelList.add(showsModel);
 				}
 				data.setValue(response.body());

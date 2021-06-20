@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.showhour.R;
 import com.example.showhour.adapters.ShowsAdapter;
@@ -39,8 +38,8 @@ public class MainScreenActivity extends AppCompatActivity {
 			@Override
 			public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
 				super.onScrolled(recyclerView, dx, dy);
-				if (!activityMainScreenBinding.showsRecyclerview.canScrollVertically(1)) {
-					if(currentPage <= totalAvailablePages) {
+				if (! activityMainScreenBinding.showsRecyclerview.canScrollVertically(1)) {
+					if (currentPage <= totalAvailablePages) {
 						currentPage += 1;
 						getShows();
 					}
@@ -83,38 +82,3 @@ public class MainScreenActivity extends AppCompatActivity {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

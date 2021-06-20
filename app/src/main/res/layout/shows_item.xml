@@ -1,88 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="4dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <View
-        android:id="@+id/view_supporter"
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="showsViewModel"
+            type="com.example.showhour.viewModel.ShowsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        app:layout_constraintTop_toBottomOf="@id/show_icon" />
-
-    <View
-        android:id="@+id/view_background"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/show_background"
-        android:paddingBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@id/show_name" />
-
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/show_icon"
-        android:layout_width="70dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="10dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:riv_corner_radius="4dp" />
-
-    <TextView
-        android:id="@+id/show_name"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/roboto_medium"
-        android:includeFontPadding="false"
-        android:paddingTop="8dp"
-        android:textColor="@color/colorTextPrimary"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/show_icon"
-        app:layout_constraintTop_toTopOf="@id/show_icon" />
+        android:padding="4dp">
 
-    <TextView
-        android:id="@+id/network"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:fontFamily="@font/roboto_regular"
-        android:includeFontPadding="false"
-        android:textColor="@color/colorTextOther"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/show_name"
-        app:layout_constraintStart_toStartOf="@id/show_name"
-        app:layout_constraintTop_toBottomOf="@id/show_name" />
+        <View
+            android:id="@+id/view_supporter"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            app:layout_constraintTop_toBottomOf="@id/show_icon" />
 
-    <TextView
-        android:id="@+id/started"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:fontFamily="@font/roboto_regular"
-        android:includeFontPadding="false"
-        android:textColor="@color/colorTextSecondary"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/show_name"
-        app:layout_constraintStart_toStartOf="@id/show_name"
-        app:layout_constraintTop_toBottomOf="@id/network" />
+        <View
+            android:id="@+id/view_background"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/show_background"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/show_name" />
 
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:fontFamily="@font/roboto_regular"
-        android:includeFontPadding="false"
-        android:textColor="@android:color/holo_green_light"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/show_name"
-        app:layout_constraintStart_toStartOf="@id/show_name"
-        app:layout_constraintTop_toBottomOf="@id/started" />
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/show_icon"
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="10dp"
+            android:scaleType="centerCrop"
+            android:imageURL="@{showsViewModel.getImage_thumbnail_path(position)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:riv_corner_radius="4dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/show_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@{showsViewModel.getName(position)}"
+            android:includeFontPadding="false"
+            android:paddingTop="8dp"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/show_icon"
+            app:layout_constraintTop_toTopOf="@id/show_icon" />
+
+        <TextView
+            android:id="@+id/network"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text='@{showsViewModel.getNetwork(position) + " (" + showsViewModel.getCountry(position) + ")"}'
+            android:includeFontPadding="false"
+            android:textColor="@color/colorTextOther"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/show_name"
+            app:layout_constraintStart_toStartOf="@id/show_name"
+            app:layout_constraintTop_toBottomOf="@id/show_name" />
+
+        <TextView
+            android:id="@+id/started"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@{showsViewModel.getStart_date(position)}"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/show_name"
+            app:layout_constraintStart_toStartOf="@id/show_name"
+            app:layout_constraintTop_toBottomOf="@id/network" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@{showsViewModel.getStatus(position)}"
+            android:includeFontPadding="false"
+            android:textColor="@android:color/holo_green_light"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/show_name"
+            app:layout_constraintStart_toStartOf="@id/show_name"
+            app:layout_constraintTop_toBottomOf="@id/started" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

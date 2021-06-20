@@ -1,6 +1,6 @@
 package com.example.showhour.network;
 
-import com.example.showhour.Response.ShowsResponse;
+import com.example.showhour.response.ShowsResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -1,4 +1,4 @@
-package com.example.showhour.Response;
+package com.example.showhour.response;
 
 import com.example.showhour.model.ShowsModel;
 import com.google.gson.annotations.SerializedName;
@@ -24,7 +24,7 @@ public class ShowsResponse {
 		return pages;
 	}
 
-	public List<ShowsModel> getTv_shows() {
+	public List<ShowsModel> getTvShows() {
 		return tv_shows;
 	}
 }

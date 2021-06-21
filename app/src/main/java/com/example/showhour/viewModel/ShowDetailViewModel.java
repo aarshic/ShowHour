@@ -22,8 +22,8 @@ public class ShowDetailViewModel extends ViewModel {
 		return showDetailRepository.getShowDetail();
 	}
 
-	public void fetchShowDetails(int id) {
-		showDetailRepository.fetchShowDetails(id);
+	public void fetchShowDetails(String permalink) {
+		showDetailRepository.fetchShowDetails(permalink);
 	}
 
 	public int getId() {

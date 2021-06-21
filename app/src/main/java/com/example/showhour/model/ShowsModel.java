@@ -10,6 +10,9 @@ public class ShowsModel {
 	@SerializedName("name")
 	private String name;
 
+	@SerializedName("permalink")
+	private String permalink;
+
 	@SerializedName("start_date")
 	private String start_date;
 
@@ -34,6 +37,10 @@ public class ShowsModel {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getPermalink() {
+		return permalink;
 	}
 
 	public String getStart_date() {

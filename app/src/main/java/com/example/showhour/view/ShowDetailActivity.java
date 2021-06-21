@@ -1,14 +1,19 @@
 package com.example.showhour.view;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -36,14 +41,30 @@ public class ShowDetailActivity extends AppCompatActivity {
 
 	private void getShowDetail() {
 		int id = getIntent().getIntExtra("id", - 1);
+		String permalink = getIntent().getStringExtra("permalink");
 		activityShowDetailBinding.setIsLoading(true);
 		showDetailViewModel.getShowDetail().observe(this, showDetailResponse -> {
 			activityShowDetailBinding.setIsLoading(false);
-			if (showDetailViewModel.getPictures() != null) {
-				loadImageSlider(showDetailViewModel.getPictures());
+			if (showDetailViewModel.getShowDetailModel() == null) {
+				Dialog dialog = new Dialog(this);
+				dialog.setContentView(R.layout.no_detail_dialog);
+				dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+				Button okBtn = dialog.findViewById(R.id.ok_btn);
+				okBtn.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						finish();
+					}
+				});
+				dialog.show();
+			}
+			else{
+				if (showDetailViewModel.getPictures() != null) {
+					loadImageSlider(showDetailViewModel.getPictures());
+				}
 			}
 		});
-		showDetailViewModel.fetchShowDetails(id);
+		showDetailViewModel.fetchShowDetails(permalink);
 	}
 
 	private void loadImageSlider(String[] sliderImages) {

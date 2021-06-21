@@ -41,6 +41,13 @@ public class ShowsViewModel extends ViewModel {
 		return null;
 	}
 
+	public String getPermalink(Integer index) {
+		if (showsRepository.getShowsModelList() != null && index != null && showsRepository.getShowsModelList().size() > index) {
+			return showsRepository.getShowsModelList().get(index).getPermalink();
+		}
+		return null;
+	}
+
 	public String getStart_date(Integer index) {
 		if (showsRepository.getShowsModelList() != null && index != null && showsRepository.getShowsModelList().size() > index) {
 			return showsRepository.getShowsModelList().get(index).getStart_date();

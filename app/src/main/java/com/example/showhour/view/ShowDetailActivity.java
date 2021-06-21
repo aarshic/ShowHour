@@ -57,8 +57,7 @@ public class ShowDetailActivity extends AppCompatActivity {
 					}
 				});
 				dialog.show();
-			}
-			else{
+			} else {
 				if (showDetailViewModel.getPictures() != null) {
 					loadImageSlider(showDetailViewModel.getPictures());
 				}
@@ -98,12 +97,11 @@ public class ShowDetailActivity extends AppCompatActivity {
 
 	private void setCurrentSliderIndicator(int position) {
 		int childCount = activityShowDetailBinding.layoutSliderIndicator.getChildCount();
-		for (int i = 0; i<childCount;i++){
+		for (int i = 0; i < childCount; i++) {
 			ImageView imageView = (ImageView) activityShowDetailBinding.layoutSliderIndicator.getChildAt(i);
 			if (i == position) {
 				imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.background_slider_indicator_active));
-			}
-			else {
+			} else {
 				imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.background_slider_indicator_inactive));
 			}
 		}

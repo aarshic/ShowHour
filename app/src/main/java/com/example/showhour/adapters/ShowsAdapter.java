@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.showhour.BR;
 import com.example.showhour.R;
 import com.example.showhour.databinding.ShowsItemBinding;
+import com.example.showhour.listeners.ShowsListener;
 import com.example.showhour.model.ShowsModel;
 import com.example.showhour.viewModel.ShowsViewModel;
 
@@ -20,9 +21,11 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.ShowsViewHol
 	private ShowsViewModel showsViewModels;
 	private LayoutInflater layoutInflater;
 	private List<ShowsModel> showsModelsList;
+	private ShowsListener showsListener;
 
-	public ShowsAdapter(ShowsViewModel showsViewModel) {
+	public ShowsAdapter(ShowsViewModel showsViewModel, ShowsListener showsListener) {
 		this.showsViewModels = showsViewModel;
+		this.showsListener = showsListener;
 	}
 
 	public void setShowsModelsList(List<ShowsModel> showsModelsList) {
@@ -52,7 +55,7 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.ShowsViewHol
 		return 0;
 	}
 
-	static class ShowsViewHolder extends RecyclerView.ViewHolder {
+	class ShowsViewHolder extends RecyclerView.ViewHolder {
 
 		private ShowsItemBinding showsItemBinding;
 
@@ -65,6 +68,26 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.ShowsViewHol
 			showsItemBinding.setVariable(BR.showsViewModel, showsViewModel);
 			showsItemBinding.setVariable(BR.position, position);
 			showsItemBinding.executePendingBindings();
+			showsItemBinding.getRoot().setOnClickListener(v ->
+					showsListener.onShowClicked(showsViewModel.getShowsModelList().get(position))
+			);
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

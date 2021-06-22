@@ -32,31 +32,305 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/slider_view_pager"
+        <ScrollView
+            android:id="@+id/show_detail_scrollview"
             android:layout_width="match_parent"
-            android:layout_height="260dp"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="70dp">
 
-        <View
-            android:id="@+id/view_fading_edge"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/background_fading_edge"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/slider_view_pager" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/layout_slider_indicator"
-            android:layout_width="match_parent"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/slider_view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view_fading_edge"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/background_fading_edge"
+                    app:layout_constraintBottom_toBottomOf="@id/slider_view_pager" />
+
+                <LinearLayout
+                    android:id="@+id/layout_slider_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="@id/view_fading_edge" />
+
+                <ImageView
+                    android:id="@+id/back_icon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/background_back_button"
+                    android:contentDescription="@string/app_name"
+                    android:paddingBottom="3dp"
+                    android:src="@drawable/ic_baseline_arrow_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/colorTextIcons" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/show_image"
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="10dp"
+                    android:imageURL="@{showDetailViewModel.image_path}"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="@id/slider_view_pager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/slider_view_pager"
+                    app:riv_corner_radius="6dp" />
+
+                <TextView
+                    android:id="@+id/show_detail_name"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:ellipsize="marquee"
+                    android:fontFamily="@font/roboto_bold"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@{showDetailViewModel.name}"
+                    android:textColor="@color/colorTextIcons"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@id/show_detail_network_country"
+                    app:layout_constraintStart_toEndOf="@id/show_image"
+                    app:layout_constraintTop_toBottomOf="@id/slider_view_pager" />
+
+                <TextView
+                    android:id="@+id/show_detail_network_country"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{showDetailViewModel.network + " (" + showDetailViewModel.country + ")"}'
+                    android:textColor="@color/colorTextOther"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/show_detail_name"
+                    app:layout_constraintTop_toBottomOf="@id/slider_view_pager" />
+
+                <TextView
+                    android:id="@+id/show_detail_status"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@{showDetailViewModel.status}"
+                    android:textColor="@android:color/holo_green_light"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@id/show_detail_name"
+                    app:layout_constraintStart_toStartOf="@id/show_detail_name"
+                    app:layout_constraintTop_toBottomOf="@id/show_detail_name" />
+
+                <TextView
+                    android:id="@+id/show_detail_started"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"Started: " + showDetailViewModel.start_date}'
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/show_detail_network_country"
+                    app:layout_constraintTop_toBottomOf="@id/show_detail_network_country" />
+
+                <TextView
+                    android:id="@+id/show_detail_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_regular"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="2dp"
+                    android:maxLines="4"
+                    android:textColor="@color/colorTextIcons"
+                    android:textSize="13sp"
+                    app:layout_constraintTop_toBottomOf="@id/show_image" />
+
+                <TextView
+                    android:id="@+id/show_detail_read_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/read_more"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/show_detail_description"
+                    app:layout_constraintTop_toBottomOf="@id/show_detail_description" />
+
+                <View
+                    android:id="@+id/show_detail_view_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@color/colorTextSecondary"
+                    app:layout_constraintTop_toBottomOf="@id/show_detail_read_more" />
+
+                <LinearLayout
+                    android:id="@+id/show_detail_divider_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/show_detail_view_divider">
+
+                    <ImageView
+                        android:id="@+id/show_detail_rating_icon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_round_star"
+                        app:tint="@color/colorTextOther" />
+
+                    <TextView
+                        android:id="@+id/show_detail_rating_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/colorTextIcons"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/u2022"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/show_detail_genre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@{showDetailViewModel.genres[0]}"
+                        android:textColor="@color/colorTextIcons"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/u2022"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/show_detail_runtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:includeFontPadding="false"
+                        android:text='@{showDetailViewModel.runtime + "min"}'
+                        android:textColor="@color/colorTextIcons"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/show_detail_view_divider_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@color/colorTextSecondary"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/show_detail_divider_layout" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/show_detail_website_btn"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingBottom="8dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/view_fading_edge" />
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="10dp"
+            android:includeFontPadding="false"
+            android:text="@string/website"
+            android:textSize="12sp"
+            android:background="@drawable/background_website_btn"
+            app:backgroundTint="@null"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/show_detail_episodes_btn"
+            app:layout_constraintTop_toBottomOf="@id/show_detail_scrollview" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/show_detail_episodes_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="10dp"
+            android:includeFontPadding="false"
+            android:text="@string/episodes"
+            android:textSize="12sp"
+            android:background="@drawable/background_episode_btn"
+            app:backgroundTint="@null"
+            android:textColor="@color/black"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/show_detail_website_btn"
+            app:layout_constraintTop_toBottomOf="@id/show_detail_scrollview" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
+
+
+
+
+
+
+
+

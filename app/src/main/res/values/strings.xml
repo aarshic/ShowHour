@@ -2,4 +2,9 @@
     <string name="app_name">ShowHour</string>
     <string name="title_string">ShowHour | Get Details of your Favourite TV Shows</string>
     <string name="search">Search</string>
+    <string name="read_less">Read Less</string>
+    <string name="read_more">Read More</string>
+    <string name="u2022">•</string>
+    <string name="website">website</string>
+    <string name="episodes">Episodes</string>
 </resources>

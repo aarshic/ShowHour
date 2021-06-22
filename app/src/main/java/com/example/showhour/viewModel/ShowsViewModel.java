@@ -12,11 +12,9 @@ import java.util.List;
 public class ShowsViewModel extends ViewModel {
 
 	private ShowsRepository showsRepository;
-	private ShowsResponse showsResponse;
 
 	public void init() {
 		showsRepository = new ShowsRepository();
-		showsResponse = new ShowsResponse();
 	}
 
 	public MutableLiveData<ShowsResponse> getShows() {

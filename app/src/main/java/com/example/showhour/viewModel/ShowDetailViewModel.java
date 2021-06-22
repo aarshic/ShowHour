@@ -1,5 +1,7 @@
 package com.example.showhour.viewModel;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -14,7 +16,7 @@ public class ShowDetailViewModel extends ViewModel {
 
 	private ShowDetailRepository showDetailRepository;
 
-	public ShowDetailViewModel() {
+	public void init() {
 		showDetailRepository = new ShowDetailRepository();
 	}
 

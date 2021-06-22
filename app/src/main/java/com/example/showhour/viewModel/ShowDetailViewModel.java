@@ -175,6 +175,34 @@ public class ShowDetailViewModel extends ViewModel {
 		return null;
 	}
 
+	public String getEpisodeName(Integer index) {
+		if (showDetailRepository.getShowDetailModel() != null && index != null && showDetailRepository.getShowDetailModel().getEpisodes().size() > index) {
+			return showDetailRepository.getShowDetailModel().getEpisodes().get(index).getName();
+		}
+		return null;
+	}
+
+	public String getEpisodeDetail(Integer index) {
+		if (showDetailRepository.getShowDetailModel() != null && index != null && showDetailRepository.getShowDetailModel().getEpisodes().size() > index) {
+			return showDetailRepository.getShowDetailModel().getEpisodes().get(index).getEpisode();
+		}
+		return null;
+	}
+
+	public String getEpisodeSeason(Integer index) {
+		if (showDetailRepository.getShowDetailModel() != null && index != null && showDetailRepository.getShowDetailModel().getEpisodes().size() > index) {
+			return showDetailRepository.getShowDetailModel().getEpisodes().get(index).getSeason();
+		}
+		return null;
+	}
+
+	public String getEpisodeAirDate(Integer index) {
+		if (showDetailRepository.getShowDetailModel() != null && index != null && showDetailRepository.getShowDetailModel().getEpisodes().size() > index) {
+			return showDetailRepository.getShowDetailModel().getEpisodes().get(index).getAir_date();
+		}
+		return null;
+	}
+
 	public ShowDetailModel getShowDetailModel() {
 		return showDetailRepository.getShowDetailModel();
 	}

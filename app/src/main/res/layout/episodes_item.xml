@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="position"
+            type="Integer" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="showDetailViewModel"
+            type="com.example.showhour.viewModel.ShowDetailViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="8dp"
+        android:background="@drawable/show_background"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/episodes_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/roboto_medium"
+            android:includeFontPadding="false"
+            android:text="@{showDetailViewModel.getEpisodeName(position)}"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/roboto_regular"
+            android:includeFontPadding="false"
+            android:text='@{"Air Date: " + showDetailViewModel.getEpisodeAirDate(position)}'
+            android:textColor="@color/colorTextIcons"
+            android:textSize="10sp"/>
+
+
+
+    </LinearLayout>
+</layout>

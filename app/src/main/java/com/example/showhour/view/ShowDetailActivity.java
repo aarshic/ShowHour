@@ -5,27 +5,35 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.showhour.R;
+import com.example.showhour.adapters.EpisodesAdapter;
 import com.example.showhour.adapters.ImageSliderAdapter;
 import com.example.showhour.databinding.ActivityShowDetailBinding;
+import com.example.showhour.databinding.EpisodesLayoutBinding;
 import com.example.showhour.viewModel.ShowDetailViewModel;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.Locale;
 
@@ -33,6 +41,8 @@ public class ShowDetailActivity extends AppCompatActivity {
 
 	private ActivityShowDetailBinding activityShowDetailBinding;
 	private ShowDetailViewModel showDetailViewModel;
+	private BottomSheetDialog episodesBottomSheetDialog;
+	private EpisodesLayoutBinding episodesLayoutBinding;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,21 +94,42 @@ public class ShowDetailActivity extends AppCompatActivity {
 						activityShowDetailBinding.showDetailDescription.setMaxLines(Integer.MAX_VALUE);
 						activityShowDetailBinding.showDetailDescription.setEllipsize(null);
 						activityShowDetailBinding.showDetailReadMore.setText(R.string.read_less);
-					}
-					else {
+					} else {
 						activityShowDetailBinding.showDetailDescription.setMaxLines(4);
 						activityShowDetailBinding.showDetailDescription.setEllipsize(TextUtils.TruncateAt.END);
 						activityShowDetailBinding.showDetailReadMore.setText(R.string.read_more);
 					}
+				});
 
-					activityShowDetailBinding.showDetailWebsiteBtn.setOnClickListener(v1 -> {
-						Intent websiteIntent = new Intent(Intent.ACTION_VIEW);
-						websiteIntent.setData(Uri.parse(showDetailViewModel.getUrl()));
-						startActivity(websiteIntent);
-					});
+				activityShowDetailBinding.showDetailWebsiteBtn.setOnClickListener(v1 -> {
+					Intent websiteIntent = new Intent(Intent.ACTION_VIEW);
+					websiteIntent.setData(Uri.parse(showDetailViewModel.getUrl()));
+					startActivity(websiteIntent);
+				});
 
+				activityShowDetailBinding.showDetailEpisodesBtn.setOnClickListener(v13 -> {
+					if (episodesBottomSheetDialog == null) {
+						episodesBottomSheetDialog = new BottomSheetDialog(ShowDetailActivity.this);
+						episodesLayoutBinding = DataBindingUtil.inflate(
+								LayoutInflater.from(ShowDetailActivity.this), R.layout.episodes_layout,
+								ShowDetailActivity.this.findViewById(R.id.episodes_container), false
+						);
+						episodesBottomSheetDialog.setContentView(episodesLayoutBinding.getRoot());
+						episodesLayoutBinding.episodesRecyclerview.setAdapter(new EpisodesAdapter(showDetailViewModel, showDetailViewModel.getEpisodes()));
+						episodesLayoutBinding.episodesTitle.setText(String.format("Episodes | %s", showDetailViewModel.getName()));
+						episodesLayoutBinding.closeIcon.setOnClickListener(v12 -> episodesBottomSheetDialog.dismiss());
+					}
+
+					FrameLayout frameLayout = episodesBottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+					if (frameLayout != null) {
+						BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(frameLayout);
+						bottomSheetBehavior.setPeekHeight(Resources.getSystem().getDisplayMetrics().heightPixels);
+						bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+					}
+					episodesBottomSheetDialog.show();
 				});
 			}
+
 			activityShowDetailBinding.invalidateAll();
 		});
 		showDetailViewModel.fetchShowDetails(permalink);

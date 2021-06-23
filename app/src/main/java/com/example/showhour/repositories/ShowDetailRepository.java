@@ -1,7 +1,5 @@
 package com.example.showhour.repositories;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
@@ -9,10 +7,6 @@ import com.example.showhour.model.ShowDetailModel;
 import com.example.showhour.network.ApiClient;
 import com.example.showhour.network.ApiService;
 import com.example.showhour.response.ShowDetailResponse;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;

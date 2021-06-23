@@ -12,7 +12,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
+import android.widget.Toast;
 
 import com.example.showhour.R;
 import com.example.showhour.adapters.SearchAdapter;
@@ -106,6 +106,9 @@ public class SearchActivity extends AppCompatActivity implements ShowsListener {
 				if (showsResponse.getTvShows() != null) {
 					activitySearchBinding.setIsLoadingMore(false);
 					searchAdapter.setSearchShowsModelList(searchViewModel.getSearchShowsModelList());
+					if (searchViewModel.getSearchShowsModelList().size() == 0) {
+						Toast.makeText(SearchActivity.this, "No Results Found", Toast.LENGTH_SHORT).show();
+					}
 					searchAdapter.notifyDataSetChanged();
 				}
 			}

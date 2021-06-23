@@ -67,12 +67,7 @@ public class ShowDetailActivity extends AppCompatActivity {
 				dialog.setContentView(R.layout.no_detail_dialog);
 				dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 				Button okBtn = dialog.findViewById(R.id.ok_btn);
-				okBtn.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						finish();
-					}
-				});
+				okBtn.setOnClickListener(v -> finish());
 				dialog.show();
 			} else {
 				activityShowDetailBinding.showDetailScrollview.setVisibility(View.VISIBLE);
@@ -172,20 +167,5 @@ public class ShowDetailActivity extends AppCompatActivity {
 				imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.background_slider_indicator_inactive));
 			}
 		}
-	}
-
-	private void setVisibilityOfComponents() {
-		activityShowDetailBinding.showImage.setVisibility(View.VISIBLE);
-		activityShowDetailBinding.showDetailName.setVisibility(View.VISIBLE);
-		activityShowDetailBinding.showDetailNetworkCountry.setVisibility(View.VISIBLE);
-		activityShowDetailBinding.showDetailStatus.setVisibility(View.VISIBLE);
-		activityShowDetailBinding.showDetailStarted.setVisibility(View.VISIBLE);
-		activityShowDetailBinding.showDetailDescription.setVisibility(View.VISIBLE);
-		activityShowDetailBinding.showDetailReadMore.setVisibility(View.VISIBLE);
-		activityShowDetailBinding.showDetailViewDivider.setVisibility(View.VISIBLE);
-		activityShowDetailBinding.showDetailDividerLayout.setVisibility(View.VISIBLE);
-		activityShowDetailBinding.showDetailViewDivider2.setVisibility(View.VISIBLE);
-		activityShowDetailBinding.showDetailWebsiteBtn.setVisibility(View.VISIBLE);
-		activityShowDetailBinding.showDetailEpisodesBtn.setVisibility(View.VISIBLE);
 	}
 }

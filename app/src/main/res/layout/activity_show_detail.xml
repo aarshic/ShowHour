@@ -276,7 +276,6 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:background="@color/colorTextSecondary"
-                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@id/show_detail_divider_layout" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -297,6 +296,7 @@
             android:textSize="12sp"
             android:background="@drawable/background_website_btn"
             app:backgroundTint="@null"
+            android:visibility="gone"
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -316,6 +316,7 @@
             android:textSize="12sp"
             android:background="@drawable/background_episode_btn"
             app:backgroundTint="@null"
+            android:visibility="gone"
             android:textColor="@color/black"
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"

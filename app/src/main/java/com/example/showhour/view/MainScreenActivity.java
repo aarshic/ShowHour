@@ -89,7 +89,6 @@ public class MainScreenActivity extends AppCompatActivity implements ShowsListen
 	public void onShowClicked(ShowsModel showsModel) {
 		Intent intent = new Intent(this, ShowDetailActivity.class);
 		intent.putExtra("id", showsModel.getId());
-		intent.putExtra("permalink", showsModel.getPermalink());
 		startActivity(intent);
 	}
 }

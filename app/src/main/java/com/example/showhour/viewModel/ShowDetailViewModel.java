@@ -1,7 +1,8 @@
 package com.example.showhour.viewModel;
 
-import android.util.Log;
+import android.app.Application;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -24,8 +25,8 @@ public class ShowDetailViewModel extends ViewModel {
 		return showDetailRepository.getShowDetail();
 	}
 
-	public void fetchShowDetails(String permalink) {
-		showDetailRepository.fetchShowDetails(permalink);
+	public void fetchShowDetails(int id) {
+		showDetailRepository.fetchShowDetails(id);
 	}
 
 	public int getId() {

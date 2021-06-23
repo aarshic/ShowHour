@@ -32,8 +32,8 @@ public class ShowDetailRepository {
 		return detailData;
 	}
 
-	public void fetchShowDetails(String permalink) {
-		apiService.getShowDetail(permalink).enqueue(new Callback<ShowDetailResponse>() {
+	public void fetchShowDetails(int id) {
+		apiService.getShowDetail(String.valueOf(id)).enqueue(new Callback<ShowDetailResponse>() {
 			@Override
 			public void onResponse(@NonNull Call<ShowDetailResponse> call, @NonNull Response<ShowDetailResponse> response) {
 				setShowDetailModel(response.body().getTvShowDetail());

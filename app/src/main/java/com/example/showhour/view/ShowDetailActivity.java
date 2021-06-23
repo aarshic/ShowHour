@@ -1,11 +1,9 @@
 package com.example.showhour.view;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -17,7 +15,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,12 +59,10 @@ public class ShowDetailActivity extends AppCompatActivity {
 
 	private void getShowDetail() {
 		int id = getIntent().getIntExtra("id", - 1);
-		String permalink = getIntent().getStringExtra("permalink");
 		activityShowDetailBinding.setIsLoading(true);
 		showDetailViewModel.getShowDetail().observe(this, showDetailResponse -> {
 			activityShowDetailBinding.setIsLoading(false);
 			if (showDetailViewModel.getShowDetailModel() == null) {
-				activityShowDetailBinding.backIcon.setVisibility(View.GONE);
 				Dialog dialog = new Dialog(this);
 				dialog.setContentView(R.layout.no_detail_dialog);
 				dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -81,6 +76,8 @@ public class ShowDetailActivity extends AppCompatActivity {
 				dialog.show();
 			} else {
 				activityShowDetailBinding.showDetailScrollview.setVisibility(View.VISIBLE);
+				activityShowDetailBinding.showDetailWebsiteBtn.setVisibility(View.VISIBLE);
+				activityShowDetailBinding.showDetailEpisodesBtn.setVisibility(View.VISIBLE);
 				if (showDetailViewModel.getPictures() != null) {
 					loadImageSlider(showDetailViewModel.getPictures());
 				}
@@ -132,7 +129,7 @@ public class ShowDetailActivity extends AppCompatActivity {
 
 			activityShowDetailBinding.invalidateAll();
 		});
-		showDetailViewModel.fetchShowDetails(permalink);
+		showDetailViewModel.fetchShowDetails(id);
 	}
 
 	private void loadImageSlider(String[] sliderImages) {

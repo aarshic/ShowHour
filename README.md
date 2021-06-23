@@ -2,7 +2,7 @@
 Find details of all your favourite shows at one place.
 
 ## Libraries and Architecture Components Used
-- MVVM Architecture
+- Model-View-ViewModel Architecture
 - Data Binding
 - Live Data
 - RecyclerView

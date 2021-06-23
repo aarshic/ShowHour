@@ -49,6 +49,10 @@ public class MainScreenActivity extends AppCompatActivity implements ShowsListen
 				}
 			}
 		});
+		activityMainScreenBinding.searchIcon.setOnClickListener(v -> {
+			Intent searchIntent = new Intent(MainScreenActivity.this, SearchActivity.class);
+			startActivity(searchIntent);
+		});
 		getShows();
 	}
 

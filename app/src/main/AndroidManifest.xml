@@ -14,6 +14,7 @@
         android:theme="@style/Theme.ShowHour"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name=".view.SearchActivity"></activity>
         <activity android:name=".view.ShowDetailActivity" />
         <activity android:name=".view.MainScreenActivity">
             <intent-filter>

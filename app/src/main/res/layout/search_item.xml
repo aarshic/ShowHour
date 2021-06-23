@@ -84,7 +84,7 @@
             android:layout_marginTop="3dp"
             android:fontFamily="@font/roboto_regular"
             android:includeFontPadding="false"
-            android:text="@{searchViewModel.getStart_date(position)}"
+            android:text="@{searchViewModel.getStart_date(position).substring(0,4)}"
             android:textColor="@color/colorTextSecondary"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@id/search_name"

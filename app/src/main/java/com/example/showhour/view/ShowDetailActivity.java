@@ -78,11 +78,12 @@ public class ShowDetailActivity extends AppCompatActivity {
 				activityShowDetailBinding.showDetailScrollview.setVisibility(View.VISIBLE);
 				activityShowDetailBinding.showDetailWebsiteBtn.setVisibility(View.VISIBLE);
 				activityShowDetailBinding.showDetailEpisodesBtn.setVisibility(View.VISIBLE);
+				activityShowDetailBinding.showDetailName.setTextIsSelectable(true);
 				if (showDetailViewModel.getPictures() != null) {
 					loadImageSlider(showDetailViewModel.getPictures());
 				}
 				activityShowDetailBinding.showDetailDescription.setText(String.valueOf(HtmlCompat.fromHtml(showDetailViewModel.getDescription(), HtmlCompat.FROM_HTML_MODE_LEGACY)));
-				activityShowDetailBinding.showDetailRatingText.setText(String.format(Locale.getDefault(), "%.2f", Double.parseDouble(showDetailViewModel.getRating())));
+				activityShowDetailBinding.showDetailRatingText.setText(String.format(Locale.getDefault(), "%.2f", Double.parseDouble(showDetailViewModel.getRating())) + "/10");
 				if (showDetailViewModel.getGenres() == null) {
 					activityShowDetailBinding.showDetailGenre.setText("N/A");
 				}

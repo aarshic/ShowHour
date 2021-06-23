@@ -93,14 +93,17 @@
 
                 <TextView
                     android:id="@+id/show_detail_name"
-                    android:layout_width="125dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:ellipsize="marquee"
+                    android:fadingEdge="horizontal"
                     android:fontFamily="@font/roboto_bold"
                     android:includeFontPadding="false"
-                    android:maxLines="1"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
                     android:text="@{showDetailViewModel.name}"
                     android:textColor="@color/colorTextIcons"
                     android:textSize="16sp"
@@ -137,9 +140,9 @@
                     android:text="@{showDetailViewModel.status}"
                     android:textColor="@android:color/holo_green_light"
                     android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="@id/show_detail_name"
-                    app:layout_constraintStart_toStartOf="@id/show_detail_name"
-                    app:layout_constraintTop_toBottomOf="@id/show_detail_name" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/show_detail_network_country"
+                    app:layout_constraintTop_toBottomOf="@id/show_detail_runtime" />
 
                 <TextView
                     android:id="@+id/show_detail_started"
@@ -150,10 +153,47 @@
                     android:fontFamily="@font/roboto_regular"
                     android:includeFontPadding="false"
                     android:maxLines="1"
-                    android:text='@{"Started: " + showDetailViewModel.start_date}'
+                    android:text="@{showDetailViewModel.start_date.substring(0,4)}"
                     android:textColor="@color/colorTextSecondary"
                     android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/show_detail_name"
+                    app:layout_constraintStart_toStartOf="@id/show_detail_name"
+                    app:layout_constraintTop_toBottomOf="@id/show_detail_rating_icon" />
+
+                <ImageView
+                    android:id="@+id/show_detail_rating_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="2dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_round_star"
+                    app:layout_constraintEnd_toStartOf="@id/show_detail_rating_text"
+                    app:layout_constraintStart_toEndOf="@id/show_image"
+                    app:layout_constraintTop_toBottomOf="@id/show_detail_name"
+                    app:tint="@color/colorTextOther" />
+
+                <TextView
+                    android:id="@+id/show_detail_rating_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/colorTextOther"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@id/show_detail_rating_icon"
+                    app:layout_constraintTop_toBottomOf="@id/show_detail_name" />
+
+                <TextView
+                    android:id="@+id/show_detail_runtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:includeFontPadding="false"
+                    android:text='@{showDetailViewModel.runtime + "min"}'
+                    android:textColor="@color/colorTextIcons"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/show_detail_network_country"
                     app:layout_constraintTop_toBottomOf="@id/show_detail_network_country" />
 
@@ -207,22 +247,6 @@
                     android:orientation="horizontal"
                     app:layout_constraintTop_toBottomOf="@id/show_detail_view_divider">
 
-                    <ImageView
-                        android:id="@+id/show_detail_rating_icon"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:contentDescription="@string/app_name"
-                        android:src="@drawable/ic_round_star"
-                        app:tint="@color/colorTextOther" />
-
-                    <TextView
-                        android:id="@+id/show_detail_rating_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:includeFontPadding="false"
-                        android:textColor="@color/colorTextIcons"
-                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -255,17 +279,6 @@
                         android:textColor="@color/colorAccent"
                         android:textSize="13sp" />
 
-                    <TextView
-                        android:id="@+id/show_detail_runtime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:includeFontPadding="false"
-                        android:text='@{showDetailViewModel.runtime + "min"}'
-                        android:textColor="@color/colorTextIcons"
-                        android:textSize="12sp" />
-
                 </LinearLayout>
 
                 <View
@@ -287,20 +300,20 @@
             android:id="@+id/show_detail_website_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/background_website_btn"
             android:includeFontPadding="false"
             android:text="@string/website"
             android:textSize="12sp"
-            android:background="@drawable/background_website_btn"
-            app:backgroundTint="@null"
             android:visibility="gone"
+            app:backgroundTint="@null"
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/show_detail_episodes_btn"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/show_detail_scrollview" />
 
         <com.google.android.material.button.MaterialButton
@@ -311,13 +324,13 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/background_episode_btn"
             android:includeFontPadding="false"
             android:text="@string/episodes"
-            android:textSize="12sp"
-            android:background="@drawable/background_episode_btn"
-            app:backgroundTint="@null"
-            android:visibility="gone"
             android:textColor="@color/black"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:backgroundTint="@null"
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

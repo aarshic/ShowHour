@@ -61,7 +61,7 @@ public class SearchActivity extends AppCompatActivity implements ShowsListener {
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				if (!s.toString().trim().isEmpty()) {
+				if (! s.toString().trim().isEmpty()) {
 					timer = new Timer();
 					timer.schedule(new TimerTask() {
 						@Override
@@ -73,8 +73,7 @@ public class SearchActivity extends AppCompatActivity implements ShowsListener {
 							});
 						}
 					}, 1000);
-				}
-				else {
+				} else {
 					if (searchViewModel.getSearchShowsModelList() != null) {
 						searchViewModel.getSearchShowsModelList().clear();
 						searchAdapter.notifyDataSetChanged();
@@ -86,7 +85,7 @@ public class SearchActivity extends AppCompatActivity implements ShowsListener {
 			@Override
 			public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
 				super.onScrolled(recyclerView, dx, dy);
-				if (!activitySearchBinding.searchInput.getText().toString().isEmpty()) {
+				if (! activitySearchBinding.searchInput.getText().toString().isEmpty()) {
 					if (currentPage < totalAvailablePage) {
 						currentPage += 1;
 						searchShows(activitySearchBinding.searchInput.getText().toString());

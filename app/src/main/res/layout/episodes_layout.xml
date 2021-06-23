@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data />
 
@@ -8,18 +8,18 @@
         android:id="@+id/episodes_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/episodes_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
             android:layout_gravity="center_vertical"
+            android:background="@color/colorPrimaryDark"
             android:orientation="horizontal"
             android:paddingTop="16dp"
-            android:paddingBottom="16dp" >
+            android:paddingBottom="16dp">
 
             <TextView
                 android:id="@+id/episodes_title"
@@ -55,7 +55,7 @@
             android:orientation="vertical"
             android:paddingBottom="8dp"
             android:scrollbars="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-        
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
     </LinearLayout>
 </layout>

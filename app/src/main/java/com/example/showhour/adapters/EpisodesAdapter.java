@@ -59,13 +59,13 @@ public class EpisodesAdapter extends RecyclerView.Adapter<EpisodesAdapter.Episod
 			episodesItemBinding.setVariable(BR.showDetailViewModel, showDetailViewModel);
 			episodesItemBinding.setVariable(BR.position, position);
 			episodesItemBinding.executePendingBindings();
-			String title ="S";
+			String title = "S";
 			String season = showDetailViewModel.getEpisodeSeason(position);
 			if (season.length() == 1) {
 				season = "0".concat(season);
 			}
 			String episodeNumber = showDetailViewModel.getEpisodeDetail(position);
-			if (episodeNumber.length() == 1){
+			if (episodeNumber.length() == 1) {
 				episodeNumber = "0".concat(episodeNumber);
 			}
 			episodeNumber = "E".concat(episodeNumber);

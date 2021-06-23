@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="position"
             type="Integer" />
@@ -17,9 +18,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_margin="8dp"
         android:background="@drawable/show_background"
+        android:orientation="vertical"
         android:padding="8dp">
 
         <TextView
@@ -49,8 +50,7 @@
             android:includeFontPadding="false"
             android:text='@{"Air Date: " + showDetailViewModel.getEpisodeAirDate(position)}'
             android:textColor="@color/colorTextIcons"
-            android:textSize="10sp"/>
-
+            android:textSize="10sp" />
 
 
     </LinearLayout>
